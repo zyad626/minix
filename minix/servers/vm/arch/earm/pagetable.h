@@ -1,4 +1,3 @@
-
 #ifndef _PAGETABLE_H
 #define _PAGETABLE_H 1
 
@@ -42,11 +41,18 @@
 #define PFERR_WRITE(e)	((e) & ARM_VM_PFE_W)
 #define PFERR_READ(e)	(!((e) & ARM_VM_PFE_W))
 
-#define VM_PAGE_SIZE    ARM_PAGE_SIZE
+#define VM_PAGE_SIZE    ARM_PAGE_SIZE // virtual memory page size
 
-/* virtual address -> pde, pte macros */
+ /* virtual address -> pde, pte macros */
 #define ARCH_VM_PTE(v) ARM_VM_PTE(v)
 #define ARCH_VM_PDE(v) ARM_VM_PDE(v)   
 
 #endif
-
+typedef struct Queue
+{
+	int capacity;  //the capacity of the queue
+	int size;    //the number of occupied pages in the queue
+	int front; //the head of the queue 
+	int rear; //the last page in the queue
+	int* pages; //the data of pages itself
+}Queue;
